@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
 import { Route as AppProductionRouteImport } from './routes/_app/production'
 
 const IndexRoute = IndexRouteImport.update({
@@ -28,6 +29,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppInventoryRoute = AppInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppProductionRoute = AppProductionRouteImport.update({
   id: '/production',
   path: '/production',
@@ -37,11 +43,13 @@ const AppProductionRoute = AppProductionRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof AppDashboardRoute
+  '/inventory': typeof AppInventoryRoute
   '/production': typeof AppProductionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof AppDashboardRoute
+  '/inventory': typeof AppInventoryRoute
   '/production': typeof AppProductionRoute
 }
 export interface FileRoutesById {
@@ -49,14 +57,21 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/inventory': typeof AppInventoryRoute
   '/_app/production': typeof AppProductionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/production'
+  fullPaths: '/' | '/dashboard' | '/inventory' | '/production'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/production'
-  id: '__root__' | '/' | '/_app' | '/_app/dashboard' | '/_app/production'
+  to: '/' | '/dashboard' | '/inventory' | '/production'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_app/dashboard'
+    | '/_app/inventory'
+    | '/_app/production'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -87,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/inventory': {
+      id: '/_app/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof AppInventoryRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/production': {
       id: '/_app/production'
       path: '/production'
@@ -99,11 +121,13 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
+  AppInventoryRoute: typeof AppInventoryRoute
   AppProductionRoute: typeof AppProductionRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppInventoryRoute: AppInventoryRoute,
   AppProductionRoute: AppProductionRoute,
 }
 
