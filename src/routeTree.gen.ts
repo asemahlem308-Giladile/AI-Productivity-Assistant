@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
+import { Route as AppAiTaskPlannerRouteImport } from './routes/_app/ai-task-planner'
 import { Route as AppAutomationRouteImport } from './routes/_app/automation'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppAiTaskPlannerRoute = AppAiTaskPlannerRouteImport.update({
+  id: '/ai-task-planner',
+  path: '/ai-task-planner',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppAutomationRoute = AppAutomationRouteImport.update({
   id: '/automation',
@@ -60,6 +66,7 @@ const AppQualityRoute = AppQualityRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
@@ -69,6 +76,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/_app/automation': typeof AppAutomationRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/inventory': typeof AppInventoryRoute
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
     | '/inventory'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
     | '/inventory'
@@ -110,6 +121,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_app'
+    | '/_app/ai-task-planner'
     | '/_app/automation'
     | '/_app/dashboard'
     | '/_app/inventory'
@@ -138,6 +150,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_app/ai-task-planner': {
+      id: '/_app/ai-task-planner'
+      path: '/ai-task-planner'
+      fullPath: '/ai-task-planner'
+      preLoaderRoute: typeof AppAiTaskPlannerRouteImport
+      parentRoute: typeof AppRoute
     }
     '/_app/automation': {
       id: '/_app/automation'
@@ -185,6 +204,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppAiTaskPlannerRoute: typeof AppAiTaskPlannerRoute
   AppAutomationRoute: typeof AppAutomationRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppInventoryRoute: typeof AppInventoryRoute
@@ -194,6 +214,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAiTaskPlannerRoute: AppAiTaskPlannerRoute,
   AppAutomationRoute: AppAutomationRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppInventoryRoute: AppInventoryRoute,
