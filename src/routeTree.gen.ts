@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
+import { Route as AppProcessImprovementRouteImport } from './routes/_app/process-improvement'
 import { Route as AppProductionRouteImport } from './routes/_app/production'
 import { Route as AppQualityRouteImport } from './routes/_app/quality'
 
@@ -35,6 +36,11 @@ const AppInventoryRoute = AppInventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => AppRoute,
 } as any)
+const AppProcessImprovementRoute = AppProcessImprovementRouteImport.update({
+  id: '/process-improvement',
+  path: '/process-improvement',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppProductionRoute = AppProductionRouteImport.update({
   id: '/production',
   path: '/production',
@@ -50,6 +56,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
+  '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
   '/quality': typeof AppQualityRoute
 }
@@ -57,6 +64,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
+  '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
   '/quality': typeof AppQualityRoute
 }
@@ -66,20 +74,34 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/inventory': typeof AppInventoryRoute
+  '/_app/process-improvement': typeof AppProcessImprovementRoute
   '/_app/production': typeof AppProductionRoute
   '/_app/quality': typeof AppQualityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/inventory' | '/production' | '/quality'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/inventory'
+    | '/process-improvement'
+    | '/production'
+    | '/quality'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/inventory' | '/production' | '/quality'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/inventory'
+    | '/process-improvement'
+    | '/production'
+    | '/quality'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_app/dashboard'
     | '/_app/inventory'
+    | '/_app/process-improvement'
     | '/_app/production'
     | '/_app/quality'
   fileRoutesById: FileRoutesById
@@ -119,6 +141,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInventoryRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/process-improvement': {
+      id: '/_app/process-improvement'
+      path: '/process-improvement'
+      fullPath: '/process-improvement'
+      preLoaderRoute: typeof AppProcessImprovementRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/production': {
       id: '/_app/production'
       path: '/production'
@@ -139,6 +168,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppInventoryRoute: typeof AppInventoryRoute
+  AppProcessImprovementRoute: typeof AppProcessImprovementRoute
   AppProductionRoute: typeof AppProductionRoute
   AppQualityRoute: typeof AppQualityRoute
 }
@@ -146,6 +176,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppInventoryRoute: AppInventoryRoute,
+  AppProcessImprovementRoute: AppProcessImprovementRoute,
   AppProductionRoute: AppProductionRoute,
   AppQualityRoute: AppQualityRoute,
 }
