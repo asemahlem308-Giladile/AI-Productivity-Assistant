@@ -26,7 +26,7 @@ export const Route = createFileRoute("/_app/quality")({
       },
     ],
   }),
-  component: Quality;
+  component: Quality,
 });
 
 const empty = {
