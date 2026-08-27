@@ -11,9 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
+import { Route as AppAiAssistantRouteImport } from './routes/_app/ai-assistant'
+import { Route as AppAiTaskPlannerRouteImport } from './routes/_app/ai-task-planner'
+import { Route as AppAutomationRouteImport } from './routes/_app/automation'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
+import { Route as AppMeetingSummarizerRouteImport } from './routes/_app/meeting-summarizer'
+import { Route as AppProcessImprovementRouteImport } from './routes/_app/process-improvement'
 import { Route as AppProductionRouteImport } from './routes/_app/production'
+import { Route as AppQualityRouteImport } from './routes/_app/quality'
+import { Route as AppResearchAssistantRouteImport } from './routes/_app/research-assistant'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,6 +30,21 @@ const IndexRoute = IndexRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppAiAssistantRoute = AppAiAssistantRouteImport.update({
+  id: '/ai-assistant',
+  path: '/ai-assistant',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAiTaskPlannerRoute = AppAiTaskPlannerRouteImport.update({
+  id: '/ai-task-planner',
+  path: '/ai-task-planner',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAutomationRoute = AppAutomationRouteImport.update({
+  id: '/automation',
+  path: '/automation',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
@@ -34,44 +56,114 @@ const AppInventoryRoute = AppInventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => AppRoute,
 } as any)
+const AppMeetingSummarizerRoute = AppMeetingSummarizerRouteImport.update({
+  id: '/meeting-summarizer',
+  path: '/meeting-summarizer',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProcessImprovementRoute = AppProcessImprovementRouteImport.update({
+  id: '/process-improvement',
+  path: '/process-improvement',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppProductionRoute = AppProductionRouteImport.update({
   id: '/production',
   path: '/production',
   getParentRoute: () => AppRoute,
 } as any)
+const AppQualityRoute = AppQualityRouteImport.update({
+  id: '/quality',
+  path: '/quality',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResearchAssistantRoute = AppResearchAssistantRouteImport.update({
+  id: '/research-assistant',
+  path: '/research-assistant',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-assistant': typeof AppAiAssistantRoute
+  '/ai-task-planner': typeof AppAiTaskPlannerRoute
+  '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
+  '/meeting-summarizer': typeof AppMeetingSummarizerRoute
+  '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
+  '/quality': typeof AppQualityRoute
+  '/research-assistant': typeof AppResearchAssistantRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-assistant': typeof AppAiAssistantRoute
+  '/ai-task-planner': typeof AppAiTaskPlannerRoute
+  '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
+  '/meeting-summarizer': typeof AppMeetingSummarizerRoute
+  '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
+  '/quality': typeof AppQualityRoute
+  '/research-assistant': typeof AppResearchAssistantRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/ai-assistant': typeof AppAiAssistantRoute
+  '/_app/ai-task-planner': typeof AppAiTaskPlannerRoute
+  '/_app/automation': typeof AppAutomationRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/inventory': typeof AppInventoryRoute
+  '/_app/meeting-summarizer': typeof AppMeetingSummarizerRoute
+  '/_app/process-improvement': typeof AppProcessImprovementRoute
   '/_app/production': typeof AppProductionRoute
+  '/_app/quality': typeof AppQualityRoute
+  '/_app/research-assistant': typeof AppResearchAssistantRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/inventory' | '/production'
+  fullPaths:
+    | '/'
+    | '/ai-assistant'
+    | '/ai-task-planner'
+    | '/automation'
+    | '/dashboard'
+    | '/inventory'
+    | '/meeting-summarizer'
+    | '/process-improvement'
+    | '/production'
+    | '/quality'
+    | '/research-assistant'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/inventory' | '/production'
+  to:
+    | '/'
+    | '/ai-assistant'
+    | '/ai-task-planner'
+    | '/automation'
+    | '/dashboard'
+    | '/inventory'
+    | '/meeting-summarizer'
+    | '/process-improvement'
+    | '/production'
+    | '/quality'
+    | '/research-assistant'
   id:
     | '__root__'
     | '/'
     | '/_app'
+    | '/_app/ai-assistant'
+    | '/_app/ai-task-planner'
+    | '/_app/automation'
     | '/_app/dashboard'
     | '/_app/inventory'
+    | '/_app/meeting-summarizer'
+    | '/_app/process-improvement'
     | '/_app/production'
+    | '/_app/quality'
+    | '/_app/research-assistant'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +187,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/ai-assistant': {
+      id: '/_app/ai-assistant'
+      path: '/ai-assistant'
+      fullPath: '/ai-assistant'
+      preLoaderRoute: typeof AppAiAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/ai-task-planner': {
+      id: '/_app/ai-task-planner'
+      path: '/ai-task-planner'
+      fullPath: '/ai-task-planner'
+      preLoaderRoute: typeof AppAiTaskPlannerRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/automation': {
+      id: '/_app/automation'
+      path: '/automation'
+      fullPath: '/automation'
+      preLoaderRoute: typeof AppAutomationRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/dashboard': {
       id: '/_app/dashboard'
       path: '/dashboard'
@@ -109,6 +222,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInventoryRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/meeting-summarizer': {
+      id: '/_app/meeting-summarizer'
+      path: '/meeting-summarizer'
+      fullPath: '/meeting-summarizer'
+      preLoaderRoute: typeof AppMeetingSummarizerRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/process-improvement': {
+      id: '/_app/process-improvement'
+      path: '/process-improvement'
+      fullPath: '/process-improvement'
+      preLoaderRoute: typeof AppProcessImprovementRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/production': {
       id: '/_app/production'
       path: '/production'
@@ -116,19 +243,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppProductionRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/quality': {
+      id: '/_app/quality'
+      path: '/quality'
+      fullPath: '/quality'
+      preLoaderRoute: typeof AppQualityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/research-assistant': {
+      id: '/_app/research-assistant'
+      path: '/research-assistant'
+      fullPath: '/research-assistant'
+      preLoaderRoute: typeof AppResearchAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAiAssistantRoute: typeof AppAiAssistantRoute
+  AppAiTaskPlannerRoute: typeof AppAiTaskPlannerRoute
+  AppAutomationRoute: typeof AppAutomationRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppInventoryRoute: typeof AppInventoryRoute
+  AppMeetingSummarizerRoute: typeof AppMeetingSummarizerRoute
+  AppProcessImprovementRoute: typeof AppProcessImprovementRoute
   AppProductionRoute: typeof AppProductionRoute
+  AppQualityRoute: typeof AppQualityRoute
+  AppResearchAssistantRoute: typeof AppResearchAssistantRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAiAssistantRoute: AppAiAssistantRoute,
+  AppAiTaskPlannerRoute: AppAiTaskPlannerRoute,
+  AppAutomationRoute: AppAutomationRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppInventoryRoute: AppInventoryRoute,
+  AppMeetingSummarizerRoute: AppMeetingSummarizerRoute,
+  AppProcessImprovementRoute: AppProcessImprovementRoute,
   AppProductionRoute: AppProductionRoute,
+  AppQualityRoute: AppQualityRoute,
+  AppResearchAssistantRoute: AppResearchAssistantRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
