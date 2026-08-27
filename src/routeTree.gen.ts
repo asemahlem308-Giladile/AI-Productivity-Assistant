@@ -15,6 +15,7 @@ import { Route as AppAiTaskPlannerRouteImport } from './routes/_app/ai-task-plan
 import { Route as AppAutomationRouteImport } from './routes/_app/automation'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
 import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
+import { Route as AppMeetingSummarizerRouteImport } from './routes/_app/meeting-summarizer'
 import { Route as AppProcessImprovementRouteImport } from './routes/_app/process-improvement'
 import { Route as AppProductionRouteImport } from './routes/_app/production'
 import { Route as AppQualityRouteImport } from './routes/_app/quality'
@@ -48,6 +49,11 @@ const AppInventoryRoute = AppInventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => AppRoute,
 } as any)
+const AppMeetingSummarizerRoute = AppMeetingSummarizerRouteImport.update({
+  id: '/meeting-summarizer',
+  path: '/meeting-summarizer',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppProcessImprovementRoute = AppProcessImprovementRouteImport.update({
   id: '/process-improvement',
   path: '/process-improvement',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
+  '/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
   '/quality': typeof AppQualityRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
+  '/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
   '/quality': typeof AppQualityRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/_app/automation': typeof AppAutomationRoute
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/inventory': typeof AppInventoryRoute
+  '/_app/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/_app/process-improvement': typeof AppProcessImprovementRoute
   '/_app/production': typeof AppProductionRoute
   '/_app/quality': typeof AppQualityRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
     | '/automation'
     | '/dashboard'
     | '/inventory'
+    | '/meeting-summarizer'
     | '/process-improvement'
     | '/production'
     | '/quality'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
     | '/automation'
     | '/dashboard'
     | '/inventory'
+    | '/meeting-summarizer'
     | '/process-improvement'
     | '/production'
     | '/quality'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
     | '/_app/automation'
     | '/_app/dashboard'
     | '/_app/inventory'
+    | '/_app/meeting-summarizer'
     | '/_app/process-improvement'
     | '/_app/production'
     | '/_app/quality'
@@ -179,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppInventoryRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/meeting-summarizer': {
+      id: '/_app/meeting-summarizer'
+      path: '/meeting-summarizer'
+      fullPath: '/meeting-summarizer'
+      preLoaderRoute: typeof AppMeetingSummarizerRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/process-improvement': {
       id: '/_app/process-improvement'
       path: '/process-improvement'
@@ -208,6 +227,7 @@ interface AppRouteChildren {
   AppAutomationRoute: typeof AppAutomationRoute
   AppDashboardRoute: typeof AppDashboardRoute
   AppInventoryRoute: typeof AppInventoryRoute
+  AppMeetingSummarizerRoute: typeof AppMeetingSummarizerRoute
   AppProcessImprovementRoute: typeof AppProcessImprovementRoute
   AppProductionRoute: typeof AppProductionRoute
   AppQualityRoute: typeof AppQualityRoute
@@ -218,6 +238,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppAutomationRoute: AppAutomationRoute,
   AppDashboardRoute: AppDashboardRoute,
   AppInventoryRoute: AppInventoryRoute,
+  AppMeetingSummarizerRoute: AppMeetingSummarizerRoute,
   AppProcessImprovementRoute: AppProcessImprovementRoute,
   AppProductionRoute: AppProductionRoute,
   AppQualityRoute: AppQualityRoute,
