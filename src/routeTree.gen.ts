@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/_app'
+import { Route as AppAiAssistantRouteImport } from './routes/_app/ai-assistant'
 import { Route as AppAiTaskPlannerRouteImport } from './routes/_app/ai-task-planner'
 import { Route as AppAutomationRouteImport } from './routes/_app/automation'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
@@ -29,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
 const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppAiAssistantRoute = AppAiAssistantRouteImport.update({
+  id: '/ai-assistant',
+  path: '/ai-assistant',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppAiTaskPlannerRoute = AppAiTaskPlannerRouteImport.update({
   id: '/ai-task-planner',
@@ -78,6 +84,7 @@ const AppResearchAssistantRoute = AppResearchAssistantRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-assistant': typeof AppAiAssistantRoute
   '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-assistant': typeof AppAiAssistantRoute
   '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/ai-assistant': typeof AppAiAssistantRoute
   '/_app/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/_app/automation': typeof AppAutomationRoute
   '/_app/dashboard': typeof AppDashboardRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-assistant'
     | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-assistant'
     | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_app'
+    | '/_app/ai-assistant'
     | '/_app/ai-task-planner'
     | '/_app/automation'
     | '/_app/dashboard'
@@ -174,6 +186,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_app/ai-assistant': {
+      id: '/_app/ai-assistant'
+      path: '/ai-assistant'
+      fullPath: '/ai-assistant'
+      preLoaderRoute: typeof AppAiAssistantRouteImport
+      parentRoute: typeof AppRoute
     }
     '/_app/ai-task-planner': {
       id: '/_app/ai-task-planner'
@@ -242,6 +261,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppAiAssistantRoute: typeof AppAiAssistantRoute
   AppAiTaskPlannerRoute: typeof AppAiTaskPlannerRoute
   AppAutomationRoute: typeof AppAutomationRoute
   AppDashboardRoute: typeof AppDashboardRoute
@@ -254,6 +274,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAiAssistantRoute: AppAiAssistantRoute,
   AppAiTaskPlannerRoute: AppAiTaskPlannerRoute,
   AppAutomationRoute: AppAutomationRoute,
   AppDashboardRoute: AppDashboardRoute,
