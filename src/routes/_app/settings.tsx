@@ -3,7 +3,7 @@ import { CheckCircle2, ShieldCheck } from "lucide-react";
 
 import { PageHeader } from "@/components/PageHeader";
 import { AiDisclaimer } from "@/components/AiDisclaimer";
-import { MASTER_PROMPT } from "@/lib/ai.functions";
+import { MASTER_PROMPT } from "@/lib/ai-prompts";
 
 export const Route = createFileRoute("/_app/settings")({
   head: () => ({
