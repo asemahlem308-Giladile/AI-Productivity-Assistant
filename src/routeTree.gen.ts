@@ -15,6 +15,7 @@ import { Route as AppAiAssistantRouteImport } from './routes/_app/ai-assistant'
 import { Route as AppAiTaskPlannerRouteImport } from './routes/_app/ai-task-planner'
 import { Route as AppAutomationRouteImport } from './routes/_app/automation'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppEmailAssistantRouteImport } from './routes/_app/email-assistant'
 import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
 import { Route as AppMeetingSummarizerRouteImport } from './routes/_app/meeting-summarizer'
 import { Route as AppProcessImprovementRouteImport } from './routes/_app/process-improvement'
@@ -49,6 +50,11 @@ const AppAutomationRoute = AppAutomationRouteImport.update({
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmailAssistantRoute = AppEmailAssistantRouteImport.update({
+  id: '/email-assistant',
+  path: '/email-assistant',
   getParentRoute: () => AppRoute,
 } as any)
 const AppInventoryRoute = AppInventoryRouteImport.update({
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
+  '/email-assistant': typeof AppEmailAssistantRoute
   '/inventory': typeof AppInventoryRoute
   '/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/process-improvement': typeof AppProcessImprovementRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
+  '/email-assistant': typeof AppEmailAssistantRoute
   '/inventory': typeof AppInventoryRoute
   '/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/process-improvement': typeof AppProcessImprovementRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/_app/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/_app/automation': typeof AppAutomationRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/email-assistant': typeof AppEmailAssistantRoute
   '/_app/inventory': typeof AppInventoryRoute
   '/_app/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/_app/process-improvement': typeof AppProcessImprovementRoute
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
+    | '/email-assistant'
     | '/inventory'
     | '/meeting-summarizer'
     | '/process-improvement'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
+    | '/email-assistant'
     | '/inventory'
     | '/meeting-summarizer'
     | '/process-improvement'
@@ -158,6 +169,7 @@ export interface FileRouteTypes {
     | '/_app/ai-task-planner'
     | '/_app/automation'
     | '/_app/dashboard'
+    | '/_app/email-assistant'
     | '/_app/inventory'
     | '/_app/meeting-summarizer'
     | '/_app/process-improvement'
@@ -215,6 +227,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/email-assistant': {
+      id: '/_app/email-assistant'
+      path: '/email-assistant'
+      fullPath: '/email-assistant'
+      preLoaderRoute: typeof AppEmailAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/inventory': {
       id: '/_app/inventory'
       path: '/inventory'
@@ -265,6 +284,7 @@ interface AppRouteChildren {
   AppAiTaskPlannerRoute: typeof AppAiTaskPlannerRoute
   AppAutomationRoute: typeof AppAutomationRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppEmailAssistantRoute: typeof AppEmailAssistantRoute
   AppInventoryRoute: typeof AppInventoryRoute
   AppMeetingSummarizerRoute: typeof AppMeetingSummarizerRoute
   AppProcessImprovementRoute: typeof AppProcessImprovementRoute
@@ -278,6 +298,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppAiTaskPlannerRoute: AppAiTaskPlannerRoute,
   AppAutomationRoute: AppAutomationRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppEmailAssistantRoute: AppEmailAssistantRoute,
   AppInventoryRoute: AppInventoryRoute,
   AppMeetingSummarizerRoute: AppMeetingSummarizerRoute,
   AppProcessImprovementRoute: AppProcessImprovementRoute,
