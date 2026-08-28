@@ -31,7 +31,7 @@ export const Route = createFileRoute("/_app/inventory")({
 
 function Inventory() {
   const [items, setItems] = useState<InventoryItem[]>(inventoryItems);
-  const [movement, setMovement] = useState({ id: inventoryItems[0].id, qty: "", type: "received" });
+  const [movement, setMovement] = useState({ id: inventoryItems[0]!.id, qty: "", type: "received" });
   const [newItem, setNewItem] = useState({ name: "", category: "Raw Material", unit: "units", stock: "", minimum: "" });
 
   const low = items.filter((i) => i.stock < i.minimum);

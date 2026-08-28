@@ -15,12 +15,15 @@ import { Route as AppAiAssistantRouteImport } from './routes/_app/ai-assistant'
 import { Route as AppAiTaskPlannerRouteImport } from './routes/_app/ai-task-planner'
 import { Route as AppAutomationRouteImport } from './routes/_app/automation'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppEmailAssistantRouteImport } from './routes/_app/email-assistant'
 import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
 import { Route as AppMeetingSummarizerRouteImport } from './routes/_app/meeting-summarizer'
 import { Route as AppProcessImprovementRouteImport } from './routes/_app/process-improvement'
 import { Route as AppProductionRouteImport } from './routes/_app/production'
 import { Route as AppQualityRouteImport } from './routes/_app/quality'
+import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppResearchAssistantRouteImport } from './routes/_app/research-assistant'
+import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -51,6 +54,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEmailAssistantRoute = AppEmailAssistantRouteImport.update({
+  id: '/email-assistant',
+  path: '/email-assistant',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppInventoryRoute = AppInventoryRouteImport.update({
   id: '/inventory',
   path: '/inventory',
@@ -76,9 +84,19 @@ const AppQualityRoute = AppQualityRouteImport.update({
   path: '/quality',
   getParentRoute: () => AppRoute,
 } as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppResearchAssistantRoute = AppResearchAssistantRouteImport.update({
   id: '/research-assistant',
   path: '/research-assistant',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -88,12 +106,15 @@ export interface FileRoutesByFullPath {
   '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
+  '/email-assistant': typeof AppEmailAssistantRoute
   '/inventory': typeof AppInventoryRoute
   '/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
   '/quality': typeof AppQualityRoute
+  '/reports': typeof AppReportsRoute
   '/research-assistant': typeof AppResearchAssistantRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,12 +122,15 @@ export interface FileRoutesByTo {
   '/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/automation': typeof AppAutomationRoute
   '/dashboard': typeof AppDashboardRoute
+  '/email-assistant': typeof AppEmailAssistantRoute
   '/inventory': typeof AppInventoryRoute
   '/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/process-improvement': typeof AppProcessImprovementRoute
   '/production': typeof AppProductionRoute
   '/quality': typeof AppQualityRoute
+  '/reports': typeof AppReportsRoute
   '/research-assistant': typeof AppResearchAssistantRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,12 +140,15 @@ export interface FileRoutesById {
   '/_app/ai-task-planner': typeof AppAiTaskPlannerRoute
   '/_app/automation': typeof AppAutomationRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/email-assistant': typeof AppEmailAssistantRoute
   '/_app/inventory': typeof AppInventoryRoute
   '/_app/meeting-summarizer': typeof AppMeetingSummarizerRoute
   '/_app/process-improvement': typeof AppProcessImprovementRoute
   '/_app/production': typeof AppProductionRoute
   '/_app/quality': typeof AppQualityRoute
+  '/_app/reports': typeof AppReportsRoute
   '/_app/research-assistant': typeof AppResearchAssistantRoute
+  '/_app/settings': typeof AppSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,12 +158,15 @@ export interface FileRouteTypes {
     | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
+    | '/email-assistant'
     | '/inventory'
     | '/meeting-summarizer'
     | '/process-improvement'
     | '/production'
     | '/quality'
+    | '/reports'
     | '/research-assistant'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,12 +174,15 @@ export interface FileRouteTypes {
     | '/ai-task-planner'
     | '/automation'
     | '/dashboard'
+    | '/email-assistant'
     | '/inventory'
     | '/meeting-summarizer'
     | '/process-improvement'
     | '/production'
     | '/quality'
+    | '/reports'
     | '/research-assistant'
+    | '/settings'
   id:
     | '__root__'
     | '/'
@@ -158,12 +191,15 @@ export interface FileRouteTypes {
     | '/_app/ai-task-planner'
     | '/_app/automation'
     | '/_app/dashboard'
+    | '/_app/email-assistant'
     | '/_app/inventory'
     | '/_app/meeting-summarizer'
     | '/_app/process-improvement'
     | '/_app/production'
     | '/_app/quality'
+    | '/_app/reports'
     | '/_app/research-assistant'
+    | '/_app/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -215,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/email-assistant': {
+      id: '/_app/email-assistant'
+      path: '/email-assistant'
+      fullPath: '/email-assistant'
+      preLoaderRoute: typeof AppEmailAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/inventory': {
       id: '/_app/inventory'
       path: '/inventory'
@@ -250,11 +293,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppQualityRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/reports': {
+      id: '/_app/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/research-assistant': {
       id: '/_app/research-assistant'
       path: '/research-assistant'
       fullPath: '/research-assistant'
       preLoaderRoute: typeof AppResearchAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
   }
@@ -265,12 +322,15 @@ interface AppRouteChildren {
   AppAiTaskPlannerRoute: typeof AppAiTaskPlannerRoute
   AppAutomationRoute: typeof AppAutomationRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppEmailAssistantRoute: typeof AppEmailAssistantRoute
   AppInventoryRoute: typeof AppInventoryRoute
   AppMeetingSummarizerRoute: typeof AppMeetingSummarizerRoute
   AppProcessImprovementRoute: typeof AppProcessImprovementRoute
   AppProductionRoute: typeof AppProductionRoute
   AppQualityRoute: typeof AppQualityRoute
+  AppReportsRoute: typeof AppReportsRoute
   AppResearchAssistantRoute: typeof AppResearchAssistantRoute
+  AppSettingsRoute: typeof AppSettingsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -278,12 +338,15 @@ const AppRouteChildren: AppRouteChildren = {
   AppAiTaskPlannerRoute: AppAiTaskPlannerRoute,
   AppAutomationRoute: AppAutomationRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppEmailAssistantRoute: AppEmailAssistantRoute,
   AppInventoryRoute: AppInventoryRoute,
   AppMeetingSummarizerRoute: AppMeetingSummarizerRoute,
   AppProcessImprovementRoute: AppProcessImprovementRoute,
   AppProductionRoute: AppProductionRoute,
   AppQualityRoute: AppQualityRoute,
+  AppReportsRoute: AppReportsRoute,
   AppResearchAssistantRoute: AppResearchAssistantRoute,
+  AppSettingsRoute: AppSettingsRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
