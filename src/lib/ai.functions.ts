@@ -15,7 +15,7 @@ export const askInduTechAI = createServerFn({ method: "POST" })
     const key = process.env["LOVABLE_API_KEY"];
     if (!key) throw new Error("AI is not configured for this workspace.");
 
-    const modeInstruction = MODE_PROMPTS[data.mode] ?? MODE_PROMPTS.assistant;
+    const modeInstruction = MODE_PROMPTS[data.mode] ?? MODE_PROMPTS['assistant'];
 
     const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",

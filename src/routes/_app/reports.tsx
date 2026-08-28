@@ -107,12 +107,12 @@ function Reports() {
 
           <div className="mt-4 space-y-1.5 text-xs text-muted-foreground">
             <p>
-              <span className="text-foreground">Top downtime driver:</span> {downtimeReasons[0].reason} (
-              {downtimeReasons[0].hours} hrs)
+              <span className="text-foreground">Top downtime driver:</span> {downtimeReasons[0]!.reason} (
+              {downtimeReasons[0]!.hours} hrs)
             </p>
             <p>
-              <span className="text-foreground">Top defect category:</span> {defectPareto[0].category} (
-              {defectPareto[0].count})
+              <span className="text-foreground">Top defect category:</span> {defectPareto[0]!.category} (
+              {defectPareto[0]!.count})
             </p>
             <p>
               <span className="text-foreground">Low stock items:</span>{" "}
