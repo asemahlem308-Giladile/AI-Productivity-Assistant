@@ -23,6 +23,7 @@ import { Route as AppProductionRouteImport } from './routes/_app/production'
 import { Route as AppQualityRouteImport } from './routes/_app/quality'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppResearchAssistantRouteImport } from './routes/_app/research-assistant'
+import { Route as AppSettingsRouteImport } from './routes/_app/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -93,6 +94,11 @@ const AppResearchAssistantRoute = AppResearchAssistantRouteImport.update({
   path: '/research-assistant',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/quality': typeof AppQualityRoute
   '/reports': typeof AppReportsRoute
   '/research-assistant': typeof AppResearchAssistantRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/quality': typeof AppQualityRoute
   '/reports': typeof AppReportsRoute
   '/research-assistant': typeof AppResearchAssistantRoute
+  '/settings': typeof AppSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/_app/quality': typeof AppQualityRoute
   '/_app/reports': typeof AppReportsRoute
   '/_app/research-assistant': typeof AppResearchAssistantRoute
+  '/_app/settings': typeof AppSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
     | '/quality'
     | '/reports'
     | '/research-assistant'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -172,6 +182,7 @@ export interface FileRouteTypes {
     | '/quality'
     | '/reports'
     | '/research-assistant'
+    | '/settings'
   id:
     | '__root__'
     | '/'
@@ -188,6 +199,7 @@ export interface FileRouteTypes {
     | '/_app/quality'
     | '/_app/reports'
     | '/_app/research-assistant'
+    | '/_app/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -295,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppResearchAssistantRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -311,6 +330,7 @@ interface AppRouteChildren {
   AppQualityRoute: typeof AppQualityRoute
   AppReportsRoute: typeof AppReportsRoute
   AppResearchAssistantRoute: typeof AppResearchAssistantRoute
+  AppSettingsRoute: typeof AppSettingsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -326,6 +346,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppQualityRoute: AppQualityRoute,
   AppReportsRoute: AppReportsRoute,
   AppResearchAssistantRoute: AppResearchAssistantRoute,
+  AppSettingsRoute: AppSettingsRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

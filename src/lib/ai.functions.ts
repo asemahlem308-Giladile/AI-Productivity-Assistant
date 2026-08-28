@@ -51,7 +51,7 @@ export const askInduTechAI = createServerFn({ method: "POST" })
         "X-Lovable-AIG-SDK": "fetch",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
+        model: "google/gemini-3.7-flash",
         messages: [
           { role: "system", content: `${MASTER_PROMPT}\n\nTASK MODE INSTRUCTIONS:\n${modeInstruction}` },
           ...(data.context
