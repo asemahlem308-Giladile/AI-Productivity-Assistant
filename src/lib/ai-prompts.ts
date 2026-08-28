@@ -26,4 +26,3 @@ export const MODE_PROMPTS: Record<string, string> = {
   inventory: `Analyse the inventory data supplied. Headings: Inventory Insight, Risk Items, Possible Causes, Recommended Action, Reorder Guidance, Priority, Expected Impact.`,
   email: `Generate a professional business email for the given audience, tone and purpose. Output: Subject line, then the email body. Keep it concise and professional.`,
 };
-};
